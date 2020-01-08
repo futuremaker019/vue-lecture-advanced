@@ -1,20 +1,12 @@
 <template>
   <div id="app">
-    hello
+    <p>hello</p>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-
-
-export default {
-  methods: {
-    fetchData (){
-      console.log('hello');
-      
-    }
-  }
-}
+export default {};
 </script>
 
 <style>
