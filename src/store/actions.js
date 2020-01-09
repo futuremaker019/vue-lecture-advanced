@@ -11,13 +11,10 @@ export default {
         console.log(error);
       });
   },
-  FETCH_JOBS({ commit }) {
+  FETCH_JOBS(context) {
     fetchJobsList()
-      .then(({ data }) => {
-
-        console.log(data);
-
-        commit('SET_JOBS', data);
+      .then(response => {
+        context.commit('SET_JOBS', response.data);
       })
       .catch(error => {
         console.log(error);
@@ -26,10 +23,6 @@ export default {
   FETCH_ASK(context) {
     fetchAskList()
       .then(response => {
-
-        console.log(response.data);
-
-
         context.commit('SET_ASK', response.data);
       })
       .catch(error => {
