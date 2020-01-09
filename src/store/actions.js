@@ -14,10 +14,9 @@ export default {
   FETCH_JOBS({ commit }) {
     fetchJobsList()
       .then(({ data }) => {
-<<<<<<< HEAD
+
         console.log(data);
-=======
->>>>>>> modularization/mutations-actions
+
         commit('SET_JOBS', data);
       })
       .catch(error => {
@@ -27,10 +26,10 @@ export default {
   FETCH_ASK(context) {
     fetchAskList()
       .then(response => {
-<<<<<<< HEAD
+
         console.log(response.data);
-=======
->>>>>>> modularization/mutations-actions
+
+
         context.commit('SET_ASK', response.data);
       })
       .catch(error => {

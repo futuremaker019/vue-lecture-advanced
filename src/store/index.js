@@ -14,15 +14,13 @@ export const store = new Vuex.Store({
   getters: {
     fetchedAsk(state) {
       return state.ask;
-<<<<<<< HEAD
+
     },
     fetchedNews(state) {
       return state.news
     },
     fetchedJobs(state) {
       return state.jobs
-=======
->>>>>>> modularization/mutations-actions
     }
   },
   mutations,
