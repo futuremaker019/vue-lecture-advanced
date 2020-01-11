@@ -1,12 +1,27 @@
 <template>
   <div>
-    <p v-for="item in fetchedAsk">
-      <!-- <a v-bind:href="item.url">{{ item.title }}</a> -->
-      <router-link v-bind:to="`item/${item.id}`">
-        {{ item.title }}
-      </router-link>
-      <small>{{ item.time_ago }} by {{ item.user }}</small>
-    </p>
+    <ul class="news-list">
+      <li v-for="item in fetchedAsk" class="post">
+        <!-- 포인트 영억 -->
+        <div class="points">{{ item.points }}</div>
+        <!-- 기타 정보 영역 -->
+        <div>
+          <router-link v-bind:to="`item/${item.id}`">
+            {{ item.title }}
+          </router-link>
+
+          <small class="link-text">
+            {{ item.time_ago }}
+            by
+            <router-link 
+            v-bind:to="`/user/${item.user}`" 
+            class="link-text">
+              {{ item.user }}
+            </router-link>
+          </small>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -15,23 +30,7 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    // #4 mapGetters의 배열화 선언 (getters의 함수명을 바로 사용가능하다.)
     ...mapGetters(["fetchedAsk"])
-
-    // #3 mapGetters의 객체화 선언
-    // ...mapGetters({
-    //   fetchedAsk: 'fetchedAsk'
-    // })
-
-    // #2 mapState를 이용한 선언
-    // ...mapState({
-    //   ask: state => state.ask
-    // }),
-
-    // #1 기본 메서드 선언
-    // ask() {
-    //   return this.$store.state.ask;
-    // }
   },
   created() {
     this.$store.dispatch("FETCH_ASK");
@@ -39,4 +38,29 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.news-list {
+  margin: 0;
+  padding: 0;
+}
+.post {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.points {
+  width: 80px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #42b883;
+}
+.news-title {
+  margin: 0;
+}
+.link-text {
+  color: #828282;
+}
+</style>
