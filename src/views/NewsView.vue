@@ -1,28 +1,62 @@
 <template>
   <div>
-    <!-- <div v-for="user in fetchedNews">{{ user.title }}</div> -->
-    <p v-for="item in fetchedNews">
-      <a v-bind:href="item.url">{{ item.title }}</a>
-      <small>
-        {{ item.time_ago }} by 
-        <router-link v-bind:to="`/user/${item.user}`">{{ item.user }}</router-link>  
-      </small>
-      
-    </p>
+    <ul class="news-list">
+      <li v-for="item in fetchedNews" class="post">
+        <!-- 포인트 영억 -->
+        <div class="points">{{ item.points }}</div>
+        <!-- 기타 정보 영역 -->
+        <div>
+          <a v-bind:href="item.url">
+            <p class="news-title">{{ item.title }}</p>
+          </a>
+
+          <small class="link-text">
+            {{ item.time_ago }}
+            by
+            <router-link v-bind:to="`/user/${item.user}`" class="link-text">{{ item.user }}</router-link>
+          </small>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
+import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(['fetchedNews'])
+    ...mapGetters(["fetchedNews"])
   },
   created() {
-    this.$store.dispatch('FETCH_NEWS');
+    this.$store.dispatch("FETCH_NEWS");
   }
 };
 </script>
 
-<style></style>
+<style>
+.news-list {
+  margin: 0;
+  padding: 0;
+}
+.post {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+.points {
+  width: 80px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #42b883;
+}
+.news-title {
+  margin: 0;
+}
+.link-text {
+  color: #828282;
+}
+</style>
