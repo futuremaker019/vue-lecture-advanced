@@ -7,7 +7,6 @@
         <!-- 기타 정보 영역 -->
         <div>
           <!-- 타이틀 영역 -->
-
           <p class="news-title">
             <template v-if='item.domain'>
               <a v-bind:href="item.url">
