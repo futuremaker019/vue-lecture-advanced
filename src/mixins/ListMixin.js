@@ -9,7 +9,7 @@ export default {
       this.$store
         .dispatch('FETCH_LIST', this.$route.name)
         .then(() => {
-          console.log('fetched');
+          console.log(this.$route.name + ' fetched');
           bus.$emit('end:spinner');
         })
         .catch(error => {
